@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DockerGen v1</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>DockerGen v1</h1>
+
+        <p>Generate Dockerfiles instantly.</p>
+
+        <select id="language">
+
+            <option value="python">Python</option>
+
+            <option value="node">Node.js</option>
+
+            <option value="java">Java</option>
+
+        </select>
+
+        <button onclick="generateDockerfile()">
+
+            Generate
+
+        </button>
+
+        <pre id="output"></pre>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
