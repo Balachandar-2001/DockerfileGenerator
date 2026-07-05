@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: dockergen
+
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: 30balachandar333/dockergen-frontend:v4
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

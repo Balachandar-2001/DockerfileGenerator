@@ -1,0 +1,45 @@
+172.31.0.252 dockergen-master
+172.31.3.186 dockergen-worker-1
+172.31.12.242 dockergen-worker-2
+
+
+1. Network issue while doing the kube init
+
+2.
+💡 Root Cause
+
+After kubeadm init, Kubernetes generates a config file:
+
+$HOME/.kube/config
+
+But in your case, kubectl is NOT using it properly.
+
+So it defaults to:
+
+http://localhost:8080
+
+which is WRONG.
+
+🔵 FIX (MASTER ONLY)
+
+Run these commands exactly:
+
+Step 1: Create kube config directory
+mkdir -p $HOME/.kube
+Step 2: Copy admin config
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+Step 3: Fix permissions
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+Step 4: Test cluster connection
+kubectl get nodes
+Expected output:
+dockergen-master     NotReady
+
+(or Ready later after CNI)
+
+Before running the CALICO APPLY
+
+
+3. sudo sysctl -w net.ipv4.ip_forward=1   
+
+before JOINING THE NODES

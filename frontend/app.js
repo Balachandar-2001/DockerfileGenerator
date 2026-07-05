@@ -2,7 +2,7 @@ async function generateDockerfile() {
 
     const language = document.getElementById("language").value;
 
-    const response = await fetch("http://localhost:5000/generate", {
+    const response = await fetch("/api/generate", {
 
         method: "POST",
 
